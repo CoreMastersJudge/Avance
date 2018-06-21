@@ -1,21 +1,4 @@
 <?php
-////////////////////////////////////////////////////////////////////////////////
-//BOCA Online Contest Administrator
-//    Copyright (C) 2003-2012 by BOCA Development Team (bocasystem@gmail.com)
-//
-//    This program is free software: you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation, either version 3 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//    You should have received a copy of the GNU General Public License
-//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-////////////////////////////////////////////////////////////////////////////////
-// Last modified 21/jul/2012 by cassio@ime.usp.br
 require('header.php');
 
 if (isset($_FILES["sourcefile"]) && isset($_POST["problem"]) && isset($_POST["Submit"]) && isset($_POST["language"]) &&
@@ -48,10 +31,6 @@ if (isset($_FILES["sourcefile"]) && isset($_POST["problem"]) && isset($_POST["Su
 		}
 
 
-		//		$ac=array('contest','site','user','problem','lang','filename','filepath');
-		//		$ac1=array('runnumber','rundate','rundatediff','rundatediffans','runanswer','runstatus','runjudge','runjudgesite',
-		//			   'runjudge1','runjudgesite1','runanswer1','runjudge2','runjudgesite2','runanswer2',
-		//			   'autoip','autobegindate','autoenddate','autoanswer','autostdout','autostderr','updatetime');
 		$param = array('contest'=>$_SESSION["usertable"]["contestnumber"],
 					   'site'=>$_SESSION["usertable"]["usersitenumber"],
 					   'user'=>  $_SESSION["usertable"]["usernumber"],
@@ -102,7 +81,6 @@ if($redo) {
 		$strtmp .= "  <td nowrap>" . dateconvminutes($run[$i]["timestamp"]) . "</td>\n";
 		$strtmp .= "  <td nowrap>" . $run[$i]["problem"] . "</td>\n";
 		$strtmp .= "  <td nowrap>" . $run[$i]["language"] . "</td>\n";
-//  $strtmp .= "  <td nowrap>" . $run[$i]["status"] . "</td>\n";
 		if (trim($run[$i]["answer"]) == "") { 
 			$run[$i]["answer"] = "Not answered yet";
 			$strtmp .= "  <td>Not answered yet"; 

@@ -1,39 +1,7 @@
 <?php
-	/** Libchart - PHP chart library
-	*	
-	* Copyright (C) 2005-2006 Jean-Marc Trémeaux (jm.tremeaux at gmail.com)
-	* 	
-	* This library is free software; you can redistribute it and/or
-	* modify it under the terms of the GNU Lesser General Public
-	* License as published by the Free Software Foundation; either
-	* version 2.1 of the License, or (at your option) any later version.
-	* 
-	* This library is distributed in the hope that it will be useful,
-	* but WITHOUT ANY WARRANTY; without even the implied warranty of
-	* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-	* Lesser General Public License for more details.
-	* 
-	* You should have received a copy of the GNU Lesser General Public
-	* License along with this library; if not, write to the Free Software
-	* Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-	* 
-	*/
-	
-	/**
-	* Pie chart
-	*
-	* @author   Jean-Marc Trémeaux (jm.tremeaux at gmail.com)
-	*/
 
 	class PieChart extends Chart
 	{
-		/**
-		* Creates a new pie chart
-		*
-		* @access	public
-    		* @param	integer		width of the image
-    		* @param	integer		height of the image
-		*/
 		
 		function PieChart($width = 600, $height = 250)
 		{
@@ -52,26 +20,10 @@
 			$this->labelBoxHeight = 15;
 		}
 
-		/**
-		* Set the ratio of the pie image over the legend
-		*
-		* @access	public
-		* @param	double		ratio (value between 0 and 1)
-		*/
-		
 		function setPieRatio($pieRatio)
 		{
 			$this->pieRatio = $pieRatio;
 		}
-
-		/**
-		* Compare two sampling point values, order from biggest to lowest value
-		*
-		* @access	private
-		* @param	double		first value
-		* @param	double		second value
-		* @return	integer		result of the comparison
-		*/
 		
 		function sortPie($v1, $v2)
 		{
@@ -79,12 +31,6 @@
 				$v1[0] > $v2[0] ? -1 :
 				1;
 		}
-		
-		/**
-		* Compute pie values in percentage and sort them
-		*
-		* @access	private
-		*/
 		
 		function computePercent()
 		{
@@ -103,28 +49,11 @@
 			if($this->order)
 				usort($this->percent, array("PieChart", "sortPie"));
 		}
-
-		/**
-		* Set the margin between the pie image and the legend
-		*
-		* @access	public
-		* @param	integer		margin value in pixels
-		*/
 		
 		function setLabelMarginCenter($labelMarginCenter)
 		{
 			$this->labelMarginCenter = $labelMarginCenter;
 		}
-
-		/**
-		* Draw a gray box with nice borders
-		*
-		* @access	private
-		* @param	integer		top left coordinate (x)
-		* @param	integer		top left coordinate (y)
-		* @param	integer		bottom right coordinate (x)
-		* @param	integer		bottom right coordinate (y)
-		*/
 		
 		function outlinedBox($x1, $y1, $x2, $y2)
 		{
@@ -134,12 +63,6 @@
 			imagerectangle($this->img, $x1, $y2 - 1, $x1 + 1, $y2, $this->axisColor2->getColor($this->img));
 			imagerectangle($this->img, $x2 - 1, $y2 - 1, $x2, $y2, $this->axisColor2->getColor($this->img));
 		}
-
-		/**
-		* Compute image layout
-		*
-		* @access	private
-		*/
 		
 		function computeLabelMargin()
 		{
@@ -163,12 +86,6 @@
 			$this->labelBRY = $this->pieBRY;
 
 		}
-
-		/**
-		* Creates the pie chart image
-		*
-		* @access	private
-		*/
 		
 		function createImage()
 		{
@@ -217,11 +134,7 @@
 			$this->aquaColor3 = new Color(239, 239, 239);
 			$this->aquaColor4 = new Color(253, 253, 253);
 
-			// Legend box
-
 			$this->outlinedBox($this->pieTLX, $this->pieTLY, $this->pieBRX, $this->pieBRY);
-
-			// Aqua-like background
 
 			$aquaColor = Array($this->aquaColor1, $this->aquaColor2, $this->aquaColor3, $this->aquaColor4);
 
@@ -231,12 +144,6 @@
 				$this->primitive->line($this->pieTLX + 2, $i, $this->pieBRX - 2, $i, $color);
 			}
 		}
-
-		/**
-		* Print legend
-		*
-		* @access	private
-		*/
 		
 		function printLabel()
 		{
@@ -267,15 +174,6 @@
 			}
 		}
 
-		/**
-		* Draw a 2D disc
-		*
-		* @access	private
-		* @param	integer		center coordinate (y)
-		* @param	array		colors for each portion
-		* @param	bitfield	drawing mode
-		*/
-		
 		function drawDisc($cy, $colorArray, $mode, $shad=false)
 		{
 			$i = 0;
@@ -302,12 +200,6 @@
 			}
 		}
 
-		/**
-		* Print the percentage text
-		*
-		* @access	private
-		*/
-		
 		function drawPercent()
 		{
 			$angle1 = 0;
@@ -316,8 +208,6 @@
 			foreach($this->percent as $a)
 			{
 				list($percent, $point) = $a;
-
-				// If value is null, don't print percentage
 				
 				if($percent <= 0)
 					continue;
@@ -336,36 +226,19 @@
 				$angle1 = $angle2;
 			}
 		}
-
-		/**
-		* Print the pie chart
-		*
-		* @access	private
-		*/
 		
 		function printPie()
 		{
-			// Silhouette
 
 			for ($cy = $this->pieCenterY + $this->pieDepth / 2; $cy >= $this->pieCenterY - $this->pieDepth / 2; $cy--)
 				$this->drawDisc($cy, $this->pieShadowColor, IMG_ARC_EDGED, true);
 
 
-			// Top
 
 			$this->drawDisc($this->pieCenterY - $this->pieDepth / 2, $this->pieColor, IMG_ARC_PIE);
 
-			// Top Outline
-
 			$this->drawPercent();
 		}
-
-		/**
-		* Render the chart image
-		*
-		* @access	public
-		* @param	string		name of the file to render the image to (optional)
-		*/
 		
 		function render($fileName = null)
 		{

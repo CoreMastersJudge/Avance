@@ -1,28 +1,10 @@
 <?php
-////////////////////////////////////////////////////////////////////////////////
-//BOCA Online Contest Administrator
-//    Copyright (C) 2003-2012 by BOCA Development Team (bocasystem@gmail.com)
-//
-//    This program is free software: you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation, either version 3 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//    You should have received a copy of the GNU General Public License
-//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-////////////////////////////////////////////////////////////////////////////////
-// Last modified 05/aug/2012 by cassio@ime.usp.br
-
 require('header.php');
 
 $d = DBRunReport($_SESSION["usertable"]["contestnumber"],$_SESSION["usertable"]["usersitenumber"]);
 
 echo "<center><h2>Statistics</h2></center>\n";
-//----------------------------------------------------------
+
 echo "<center><h3>Runs by Problem</h3></center>\n";
 echo "<center><table border=1>\n";
 echo "<tr><td><b><u>Problems</u></b></td>";
@@ -67,7 +49,7 @@ echo "<center><table><tr>";
 echo "<td><img alt=\"\" src=\"piechart.php?dados=".rawurlencode($str)."&color=".rawurlencode($cor)."\" /></td>\n";
 echo "<td><img alt=\"\" src=\"piechart.php?dados=".rawurlencode($str2)."&color=".rawurlencode($cor)."\" /></td></tr></table></center>\n";
 
-//----------------------------------------------------------
+
 echo "<center><h3>Runs by Problem and Answer</h3></center>\n";
 echo "<center><table border=1>\n";
 echo "<tr><td><b><u>Problems x Answers</u></b></td>";
@@ -96,7 +78,7 @@ while (list($keya, $vala) = each($d['problem'])) {
 }
 echo "</table></center>";
 
-//----------------------------------------------------------
+
 echo "<center><h3>Runs by Problem and Language</h3></center>\n";
 echo "<center><table border=1>\n";
 echo "<tr><td><b><u>Problems x Languages</u></b></td>";
@@ -125,7 +107,7 @@ while (list($keya, $vala) = each($d['problem'])) {
 }
 echo "</table></center>";
 
-//----------------------------------------------------------
+
 echo "<br />";
 echo "<hr />";
 echo "<center><h3>Runs by Language</h3></center>\n";
@@ -162,7 +144,7 @@ echo "<center><table><tr>";
 echo "<td><img alt=\"\" src=\"piechart.php?dados=".rawurlencode($str)."\" /></td>\n";
 echo "<td><img alt=\"\" src=\"piechart.php?dados=".rawurlencode($str2)."\" /></td></tr></table></center>\n";
 
-//----------------------------------------------------------
+
 echo "<center><h3>Runs by Language and Answer</h3></center>\n";
 echo "<center><table border=1>\n";
 echo "<tr><td><b><u>Languages x Answers</u></b></td>";
@@ -188,7 +170,7 @@ while (list($keya, $vala) = each($d['language'])) {
 }
 echo "</table></center>";
 
-//----------------------------------------------------------
+
 echo "<br />";
 echo "<hr />";
 echo "<center><h3>Runs by Answer</h3></center>\n";
@@ -215,7 +197,7 @@ echo "</table></center>";
 echo "</td>";
 echo "<td><img alt=\"\" src=\"piechart.php?order=1&dados=".rawurlencode($str)."\" /></td></tr></table></center>\n";
 
-//----------------------------------------------------------
+
 echo "<br />";
 echo "<hr />";
 echo "<center><h3>Runs by User and Problem</h3></center>\n";
@@ -273,7 +255,7 @@ while (list($keya, $vala) = each($d['username'])) {
 }
 echo "</table></center>";
 
-//----------------------------------------------------------
+
 echo "<br />";
 echo "<hr />";
 echo "<center><h3>Runs by Time Period</h3></center>\n";
@@ -309,7 +291,7 @@ for($pos=0; $pos<$vezes; $pos++) {
 
 echo "<center><img alt=\"\" src=\"linechart.php?dados=".rawurlencode($str)."\" /></center>\n";
 
-//------------------------------------------------
+
 $vezes = 30;
 $passo = $st['siteduration']/$vezes;
 $atual = 0;

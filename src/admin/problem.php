@@ -1,21 +1,4 @@
 <?php
-////////////////////////////////////////////////////////////////////////////////
-//BOCA Online Contest Administrator
-//    Copyright (C) 2003-2012 by BOCA Development Team (bocasystem@gmail.com)
-//
-//    This program is free software: you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation, either version 3 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//    You should have received a copy of the GNU General Public License
-//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-////////////////////////////////////////////////////////////////////////////////
-// Last modified 08/aug/2015 by cassio@ime.usp.br
 if (!isset($_POST["confirmation"]) || $_POST["confirmation"] != "confirm")
 	unset($_POST['noflush']);
 
@@ -272,9 +255,6 @@ for ($i=0; $i<count($prob); $i++) {
 	  echo "</a></td>\n";
 	  echo "<input type=hidden name=\"problemname" . $prob[$i]['number'] . "\" value=\"" . $prob[$i]["name"] . "\" />";
 	  echo "  <td nowrap>" . $prob[$i]["name"] . "</td>\n";
-	  //echo "  <td nowrap>";
-	  //echo "<input type=\"text\" name=\"problemname" . $prob[$i]['number'] . "\" value=\"" . $prob[$i]["name"] . "\" size=\"4\" maxlength=\"20\" />";
-	  //echo "</td>\n";
   } else {
     echo "  <td nowrap>" . $prob[$i]["number"] . " (fake)</td>\n";
     echo "  <td nowrap>" . $prob[$i]["name"] . "</td>\n";
@@ -296,21 +276,6 @@ for ($i=0; $i<count($prob); $i++) {
   }
   else
     echo "  <td nowrap>&nbsp;</td>\n";
-/*
-  if ($prob[$i]["soloid"] != null) {
-    $tx = $prob[$i]["solhash"];
-    echo "  <td nowrap><a href=\"../filedownload.php?" . filedownload($prob[$i]["soloid"],$prob[$i]["solfilename"]) ."\">" . 
-	$prob[$i]["solfilename"] . "</a> ".
-	"<img title=\"hash: $tx\" alt=\"$tx\" width=\"25\" src=\"../images/bigballoontransp-hash.png\" />" . 
-	"</td>\n";
-  }
-  else
-    echo "  <td nowrap>&nbsp;</td>\n";
-  if ($prob[$i]["timelimit"]!="")
-    echo "  <td nowrap>" . $prob[$i]["timelimit"] . "</td>\n";
-  else
-    echo "  <td nowrap>&nbsp;</td>\n";
-*/
   echo "  <td nowrap>";
   if($prob[$i]["fake"]!='t') {
     if ($prob[$i]["color"]!="") {
@@ -342,24 +307,6 @@ To replace the data of a problem, proceed as if it did not exist (data will be r
 			if(document.form1.problemname.value=="") {
 				alert('Sorry, mandatory fields are empty');
 			} else {
-/*
-				var s1 = String(document.form1.problemdesc.value);
-				var l = s1.length;
-				if(l >= 3 && (s1.substr(l-3,3).toUpperCase()==".IN" ||
-							 s1.substr(l-4,4).toUpperCase()==".OUT" ||
-							 s1.substr(l-4,4).toUpperCase()==".SOL" ||
-							 s1.substr(l-2,2).toUpperCase()==".C" ||
-							 s1.substr(l-2,2).toUpperCase()==".H" ||
-							 s1.substr(l-3,3).toUpperCase()==".CC" ||
-							 s1.substr(l-3,3).toUpperCase()==".GZ" ||
-							 s1.substr(l-4,4).toUpperCase()==".CPP" ||
-							 s1.substr(l-4,4).toUpperCase()==".HPP" ||
-							 s1.substr(l-4,4).toUpperCase()==".ZIP" ||
-							 s1.substr(l-4,4).toUpperCase()==".TGZ" ||
-							 s1.substr(l-5,5).toUpperCase()==".JAVA")) {
-					alert('Description file has invalid extension: ...'+s1.substr(l-3,3));
-				} else {
-*/
 				var s2 = String(document.form1.probleminput.value);
 				if(s2.length > 4) {
 					if (confirm("Confirm?")) {

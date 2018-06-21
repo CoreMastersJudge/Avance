@@ -1,39 +1,7 @@
 <?php
-	/** Libchart - PHP chart library
-	*	
-	* Copyright (C) 2005-2006 Jean-Marc Trémeaux (jm.tremeaux at gmail.com)
-	* 	
-	* This library is free software; you can redistribute it and/or
-	* modify it under the terms of the GNU Lesser General Public
-	* License as published by the Free Software Foundation; either
-	* version 2.1 of the License, or (at your option) any later version.
-	* 
-	* This library is distributed in the hope that it will be useful,
-	* but WITHOUT ANY WARRANTY; without even the implied warranty of
-	* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-	* Lesser General Public License for more details.
-	* 
-	* You should have received a copy of the GNU Lesser General Public
-	* License along with this library; if not, write to the Free Software
-	* Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-	* 
-	*/
-	
-	/**
-	* Horizontal bar chart
-	*
-	* @author   Jean-Marc Trémeaux (jm.tremeaux at gmail.com)
-	*/
 
 	class HorizontalChart extends BarChart
 	{
-		/**
-		* Creates a new horizontal bar chart
-		*
-		* @access	public
-    		* @param	integer		width of the image
-    		* @param	integer		height of the image
-		*/
 		
 		function HorizontalChart($width = 600, $height = 250)
 		{
@@ -45,15 +13,8 @@
 			$this->setLabelMarginBottom(30);
 		}
 
-		/**
-		* Print the axis
-		*
-		* @access	private
-		*/
-		
 		function printAxis()
 		{
-			// Check if some points were defined
 			
 			if(!$this->sampleCount)
 				return;
@@ -61,8 +22,6 @@
 			$minValue = $this->axis->getLowerBoundary();
 			$maxValue = $this->axis->getUpperBoundary();
 			$stepValue = $this->axis->getTics();
-
-			// Horizontal axis
 
 			for($value = $minValue; $value <= $maxValue; $value += $stepValue)
 			{
@@ -73,8 +32,6 @@
 
 				$this->text->printText($this->img, $x, $this->graphBRY + 5, $this->textColor, $value, $this->text->fontCondensed, $this->text->HORIZONTAL_CENTER_ALIGN);
 			}
-
-			// Vertical Axis
 
 			$rowHeight = ($this->graphBRY - $this->graphTLY) / $this->sampleCount;
 
@@ -99,15 +56,9 @@
 			}
 		}
 
-		/**
-		* Print the bars
-		*
-		* @access	private
-		*/
-		
+
 		function printBar()
 		{
-			// Check if some points were defined
 			
 			if(!$this->sampleCount)
 				return;
@@ -133,8 +84,6 @@
 
 				$this->text->printText($this->img, $xmax + 5, $y - $rowHeight / 2, $this->textColor, $value, $this->text->fontCondensed, $this->text->VERTICAL_CENTER_ALIGN);
 
-				// Horizontal bar
-
 				$y1 = $y - $rowHeight * 4 / 5;
 				$y2 = $y - $rowHeight * 1 / 5;
 
@@ -142,13 +91,6 @@
 				imagefilledrectangle($this->img, $this->graphTLX + 2, $y1+1, $xmax - 4, $y2, $this->barColor1->getColor($this->img));
 			}
 		}
-		
-		/**
-		* Render the chart image
-		*
-		* @access	public
-		* @param	string		name of the file to render the image to (optional)
-		*/
 		
 		function render($fileName = null)
 		{

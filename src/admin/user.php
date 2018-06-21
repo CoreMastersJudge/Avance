@@ -1,20 +1,4 @@
 <?php
-////////////////////////////////////////////////////////////////////////////////
-//BOCA Online Contest Administrator
-//    Copyright (C) 2003-2014 by BOCA Development Team (bocasystem@gmail.com)
-//
-//    This program is free software: you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation, either version 3 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//    You should have received a copy of the GNU General Public License
-//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-////////////////////////////////////////////////////////////////////////////////
 require('header.php');
 
 if (isset($_GET["site"]) && isset($_GET["user"]) && is_numeric($_GET["site"]) && is_numeric($_GET["user"]) &&
@@ -50,18 +34,6 @@ if (isset($_POST["username"]) && isset($_POST["userfullname"]) && isset($_POST["
 	$param['contest'] = $_SESSION["usertable"]["contestnumber"];
 	$param['changepass']='t';
 	if(isset($_POST['changepass']) && $_POST['changepass'] != 't') $param['changepass']='f';
-/*
-	$param['user'] = myhtmlspecialchars($_POST["usernumber"]);
-	$param['site'] = myhtmlspecialchars($_POST["usersitenumber"]);
-	$param['username'] = myhtmlspecialchars($_POST["username"]);
-	$param['usericpcid'] = myhtmlspecialchars($_POST["usericpcid"]);
-	$param['enabled'] = myhtmlspecialchars($_POST["userenabled"]);
-	$param['multilogin'] = myhtmlspecialchars($_POST["usermultilogin"]);
-	$param['userfull'] = unsanitizeText($_POST["userfullname"]); //myhtmlspecialchars($_POST["userfullname"]);
-	$param['userdesc'] = unsanitizeText($_POST["userdesc"]); //myhtmlspecialchars($_POST["userdesc"]);
-	$param['type'] = myhtmlspecialchars($_POST["usertype"]);
-	$param['permitip'] = myhtmlspecialchars($_POST["userip"]);
-*/
 
 
 	$passcheck = $_POST["passwordo"];
@@ -252,7 +224,6 @@ else
 for ($i=0; $i < count($usr); $i++) {
   echo " <tr>\n";
   if(($usr[$i]["usersitenumber"] == $_SESSION["usertable"]["usersitenumber"] || $main==true) && 
-	 //$usr[$i]["usertype"] != 'site' && 
 	 ($usr[$i]["usernumber"] != $_SESSION["usertable"]["usernumber"] || 
 	  $usr[$i]["usersitenumber"] != $_SESSION["usertable"]["usersitenumber"]))
 	  echo "  <td nowrap><a href=\"user.php?site=" . $usr[$i]["usersitenumber"] . "&user=" .
@@ -310,8 +281,6 @@ function computeHASH()
 	document.form3.passwordn1.value = bighexsoma(js_myhash(document.form3.passwordn1.value),js_myhash(document.form3.passwordo.value));
 	document.form3.passwordn2.value = bighexsoma(js_myhash(document.form3.passwordn2.value),js_myhash(document.form3.passwordo.value));
 	document.form3.passwordo.value = js_myhash(js_myhash(document.form3.passwordo.value)+'<?php echo session_id(); ?>');
-//	document.form3.passwordn1.value = js_myhash(document.form3.passwordn1.value);
-//	document.form3.passwordn2.value = js_myhash(document.form3.passwordn2.value);
 }
 </script>
 

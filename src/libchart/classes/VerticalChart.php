@@ -1,40 +1,8 @@
 <?php
-	/** Libchart - PHP chart library
-	*	
-	* Copyright (C) 2005-2006 Jean-Marc Trémeaux (jm.tremeaux at gmail.com)
-	* 	
-	* This library is free software; you can redistribute it and/or
-	* modify it under the terms of the GNU Lesser General Public
-	* License as published by the Free Software Foundation; either
-	* version 2.1 of the License, or (at your option) any later version.
-	* 
-	* This library is distributed in the hope that it will be useful,
-	* but WITHOUT ANY WARRANTY; without even the implied warranty of
-	* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-	* Lesser General Public License for more details.
-	* 
-	* You should have received a copy of the GNU Lesser General Public
-	* License along with this library; if not, write to the Free Software
-	* Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-	* 
-	*/
-	
-	/**
-	* Vertical bar chart
-	*
-	* @author   Jean-Marc Trémeaux (jm.tremeaux at gmail.com)
-	*/
 
 	class VerticalChart extends BarChart
 	{
-		/**
-		* Creates a new vertical bar chart
-		*
-		* @access	public
-    		* @param	integer		width of the image
-    		* @param	integer		height of the image
-		*/
-		
+
 		function VerticalChart($width = 600, $height = 250)
 		{
 			parent::BarChart($width, $height);
@@ -44,16 +12,9 @@
 			$this->setLabelMarginTop(40);
 			$this->setLabelMarginBottom(50);
 		}
-
-		/**
-		* Print the axis
-		*
-		* @access	private
-		*/
 		
 		function printAxis()
 		{
-			// Check if some points were defined
 			
 			if(!$this->sampleCount)
 				return;
@@ -61,8 +22,6 @@
 			$minValue = $this->axis->getLowerBoundary();
 			$maxValue = $this->axis->getUpperBoundary();
 			$stepValue = $this->axis->getTics();
-
-			// Vertical axis
 
 			for($value = $minValue; $value <= $maxValue; $value += $stepValue)
 			{
@@ -73,8 +32,6 @@
 
 				$this->text->printText($this->img, $this->graphTLX - 5, $y, $this->textColor, $value, $this->text->fontCondensed, $this->text->HORIZONTAL_RIGHT_ALIGN | $this->text->VERTICAL_CENTER_ALIGN);
 			}
-
-			// Horizontal Axis
 
 			$columnWidth = ($this->graphBRX - $this->graphTLX) / $this->sampleCount;
 
@@ -99,15 +56,8 @@
 			}
 		}
 
-		/**
-		* Print the bars
-		*
-		* @access	private
-		*/
-
 		function printBar()
 		{
-			// Check if some points were defined
 			
 			if(!$this->sampleCount)
 				return;
@@ -133,8 +83,6 @@
 
 				$this->text->printText($this->img, $x + $columnWidth / 2, $ymin - 5, $this->textColor, $value, $this->text->fontCondensed, $this->text->HORIZONTAL_CENTER_ALIGN | $this->text->VERTICAL_BOTTOM_ALIGN);
 
-				// Vertical bar
-
 				$x1 = $x + $columnWidth * 1 / 5;
 				$x2 = $x + $columnWidth * 4 / 5;
 
@@ -142,13 +90,6 @@
 				imagefilledrectangle($this->img, $x1 + 1, $ymin + 1, $x2 - 4, $this->graphBRY - 1, $this->barColor1->getColor($this->img));
 			}
 		}
-		
-		/**
-		* Render the chart image
-		*
-		* @access	public
-		* @param	string		name of the file to render the image to (optional)
-		*/
 		
 		function render($fileName = null)
 		{

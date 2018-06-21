@@ -1,21 +1,4 @@
 <?php
-////////////////////////////////////////////////////////////////////////////////
-//BOCA Online Contest Administrator
-//    Copyright (C) 2003-2012 by BOCA System (bocasystem@gmail.com)
-//
-//    This program is free software: you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation, either version 3 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//    You should have received a copy of the GNU General Public License
-//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-////////////////////////////////////////////////////////////////////////////////
-//Last updated 07/nov/2012 by cassio@ime.usp.br
 
 require('header.php');
 
@@ -26,10 +9,7 @@ $ct = DBContestInfo($contest);
 if(($st =  DBSiteInfo($contest, $site)) == null)
 	ForceLoad("../index.php");
 
-//if(isset($_GET['full']) && $_GET['full'] > 0)
 	$freezeTime = $st['siteduration'];
-//else
-//	$freezeTime = $st['sitelastmilescore'];
 
 $contestfile = $ct['contestname'] . "\n";
 
@@ -81,10 +61,6 @@ $contestfile = $contestfile .
 
 $score = DBScore($_SESSION["usertable"]["contestnumber"], false, -1, $ct["contestlocalsite"]);
 
-//$contestfile = $contestfile .
-//	"<h2>ICPC Output</h2>";
-//$contestfile = $contestfile .
-//	"<pre>";
 $n=0;
 $class=1;
 while(list($e, $c) = each($score)) {
@@ -105,8 +81,6 @@ while(list($e, $c) = each($score)) {
 		}
 	}
 }
-//$contestfile = $contestfile .
-//	"</pre>";
 
 $timefile = $st['currenttime'];
 $versionfile = '1.0' . "\n";

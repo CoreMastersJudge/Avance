@@ -1,39 +1,7 @@
 <?php
-	/** Libchart - PHP chart library
-	*	
-	* Copyright (C) 2005-2006 Jean-Marc Trémeaux (jm.tremeaux at gmail.com)
-	* 	
-	* This library is free software; you can redistribute it and/or
-	* modify it under the terms of the GNU Lesser General Public
-	* License as published by the Free Software Foundation; either
-	* version 2.1 of the License, or (at your option) any later version.
-	* 
-	* This library is distributed in the hope that it will be useful,
-	* but WITHOUT ANY WARRANTY; without even the implied warranty of
-	* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-	* Lesser General Public License for more details.
-	* 
-	* You should have received a copy of the GNU Lesser General Public
-	* License along with this library; if not, write to the Free Software
-	* Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-	* 
-	*/
-	
-	/**
-	* Line chart
-	*
-	* @author   Jean-Marc Trémeaux (jm.tremeaux at gmail.com)
-	*/
 
 	class LineChart extends BarChart
 	{
-		/**
-		* Creates a new line chart
-		*
-		* @access	public
-    		* @param	integer		width of the image
-    		* @param	integer		height of the image
-		*/
 		
 		function LineChart($width = 600, $height = 250)
 		{
@@ -44,16 +12,10 @@
 			$this->setLabelMarginTop(40);
 			$this->setLabelMarginBottom(50);
 		}
-
-		/**
-		* Print the axis
-		*
-		* @access	private
-		*/
 		
 		function printAxis()
 		{
-			// Check if some points were defined
+
 			
 			if($this->sampleCount < 2)
 				return;
@@ -62,7 +24,6 @@
 			$maxValue = $this->axis->getUpperBoundary();
 			$stepValue = $this->axis->getTics();
 
-			// Line axis
 
 			for($value = $minValue; $value <= $maxValue; $value += $stepValue)
 			{
@@ -73,8 +34,6 @@
 
 				$this->text->printText($this->img, $this->graphTLX - 5, $y, $this->textColor, $value, $this->text->fontCondensed, $this->text->HORIZONTAL_RIGHT_ALIGN | $this->text->VERTICAL_CENTER_ALIGN);
 			}
-
-			// Horizontal Axis
 
 			$columnWidth = ($this->graphBRX - $this->graphTLX) / ($this->sampleCount - 1);
 
@@ -96,15 +55,8 @@
 			}
 		}
 
-		/**
-		* Print the lines
-		*
-		* @access	private
-		*/
-
 		function printLine()
 		{
-			// Check if some points were defined
 			
 			if($this->sampleCount < 2)
 				return;
@@ -130,9 +82,6 @@
 				
 				$y2 = $this->graphBRY - ($value - $minValue) * ($this->graphBRY - $this->graphTLY) / ($this->axis->displayDelta);
 
-//				$this->text->printText($this->img, $x2, $y2 - 5, $this->textColor, $value, $this->text->fontCondensed, $this->text->HORIZONTAL_CENTER_ALIGN | $this->text->VERTICAL_BOTTOM_ALIGN);
-
-				// Draw line 
 
 				if($x1)
 				{
@@ -144,13 +93,6 @@
 				$y1 = $y2;
 			}
 		}
-		
-		/**
-		* Render the chart image
-		*
-		* @access	public
-		* @param	string		name of the file to render the image to (optional)
-		*/
 		
 		function render($fileName = null)
 		{

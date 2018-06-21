@@ -1,21 +1,4 @@
 <?php
-////////////////////////////////////////////////////////////////////////////////
-//BOCA Online Contest Administrator
-//    Copyright (C) 2003-2012 by BOCA Development Team (bocasystem@gmail.com)
-//
-//    This program is free software: you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation, either version 3 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//    You should have received a copy of the GNU General Public License
-//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-////////////////////////////////////////////////////////////////////////////////
-// Last modified 05/aug/2012 by cassio@ime.usp.br
 require 'header.php';
 
 if (isset($_POST["cancel"]) && $_POST["cancel"]=="Cancel editing")
@@ -62,19 +45,17 @@ if (isset($_POST["answer"]) && isset($_POST["open"]) && $_POST["open"]=="Open ru
 
 if (isset($_POST["answer"]) && isset($_POST["Submit"]) && $_POST["Submit"]=="Judge" && is_numeric($_POST["answer"]) &&
     isset($_POST["sitenumber"]) && isset($_POST["number"]) && is_numeric($_POST["sitenumber"]) &&
-    is_numeric($_POST["number"])) { // && isset($_POST["notifyuser"]) && isset($_POST["updatescore"])) {
+    is_numeric($_POST["number"])) { 
 
 	if ($_POST["confirmation"] == "confirm") {
 	        $answer = myhtmlspecialchars($_POST["answer"]);
 	        $sitenumber = myhtmlspecialchars($_POST["sitenumber"]);
 	        $number = myhtmlspecialchars($_POST["number"]);
-//      	  $notuser = myhtmlspecialchars($_POST["notifyuser"]);
-//	        $updscore = myhtmlspecialchars($_POST["updatescore"]);
 
 	        DBChiefUpdateRun($_SESSION["usertable"]["contestnumber"],
 	                     $_SESSION["usertable"]["usersitenumber"],
 	                     $_SESSION["usertable"]["usernumber"],
-	                     $sitenumber, $number, $answer); //, $notuser, updscore);
+	                     $sitenumber, $number, $answer); 
 	}
         ForceLoad($runphp);
 }
@@ -85,7 +66,6 @@ if (!isset($_GET["runnumber"]) || !isset($_GET["runsitenumber"]) ||
 	ForceLoad($runphp);
 }
 
-// ???
 $runsitenumber = myhtmlspecialchars($_GET["runsitenumber"]);
 $runnumber = myhtmlspecialchars($_GET["runnumber"]);
 
@@ -165,15 +145,15 @@ filedownload($a["sourceoid"],$a["sourcename"]) ."', 'View - SOURCE', ".
           <select name="answer">
 <?php
 $ans = DBGetAnswers($_SESSION["usertable"]["contestnumber"]);
-//$isfak = true;
+
 for ($i=0;$i<count($ans);$i++)
 	if ($a["answer"] == $ans[$i]["number"]) {
-//	  if($ans[$i]["fake"] != "t") $isfak = false;
+
        	  echo "<option selected value=\"" . $ans[$i]["number"] . "\">" . $ans[$i]["desc"] . "</option>\n";
 	} else
 	        echo "<option value=\"" . $ans[$i]["number"] . "\">" . $ans[$i]["desc"] . "</option>\n";
 	echo "</select>";
-//	if(!$isfak) {
+
         if($a["judgesite"] != "" && $a["judge"] != "") {
  	 $uu = DBUserInfo ($_SESSION["usertable"]["contestnumber"], $a["judgesite"], $a["judge"]);
    	 echo " [judge=" . $uu["username"] . " (" . $a["judgesite"] . ")]";
@@ -188,7 +168,7 @@ for ($i=0;$i<count($ans);$i++)
 $ans = DBGetAnswers($_SESSION["usertable"]["contestnumber"]);
 for ($i=0;$i<count($ans);$i++)
 	if ($a["answer1"] == $ans[$i]["number"]) {
-//	  if($ans[$i]["fake"] != "t") {
+
           if($a["judgesite1"] != "" && $a["judge1"] != "") {
    	   $uu = DBUserInfo ($_SESSION["usertable"]["contestnumber"], $a["judgesite1"], $a["judge1"]);
    	   echo $ans[$i]["desc"] . " [judge=" . $uu["username"] . " (" . $a["judgesite1"] . ")]";
@@ -205,7 +185,7 @@ for ($i=0;$i<count($ans);$i++)
 $ans = DBGetAnswers($_SESSION["usertable"]["contestnumber"]);
 for ($i=0;$i<count($ans);$i++)
 	if ($a["answer2"] == $ans[$i]["number"]) {
-//	  if($ans[$i]["fake"] != "t") {
+
           if($a["judgesite2"] != "" && $a["judge2"] != "") {
    	   $uu = DBUserInfo ($_SESSION["usertable"]["contestnumber"], $a["judgesite2"], $a["judge2"]);
    	   echo $ans[$i]["desc"] . " [judge=" . $uu["username"] . " (" . $a["judgesite2"] . ")]";

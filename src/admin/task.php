@@ -1,21 +1,4 @@
 <?php
-////////////////////////////////////////////////////////////////////////////////
-//BOCA Online Contest Administrator
-//    Copyright (C) 2003-2012 by BOCA Development Team (bocasystem@gmail.com)
-//
-//    This program is free software: you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation, either version 3 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//    You should have received a copy of the GNU General Public License
-//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-////////////////////////////////////////////////////////////////////////////////
-// Last modified 05/aug/2012 by cassio@ime.usp.br
 require_once('header.php');
 if(isset($_GET["order"]) && $_GET["order"] != "") {
 $order = myhtmlspecialchars($_GET["order"]);
@@ -38,7 +21,6 @@ if (isset($_GET["delete"]) && is_numeric($_GET["delete"]) && isset($_GET["site"]
 
 if (isset($_GET["return"]) && is_numeric($_GET["return"]) && isset($_GET["site"]) && is_numeric($_GET["site"])) {
 	DBTaskGiveUp ($_GET["return"], $_GET["site"], $_SESSION["usertable"]["contestnumber"], -1, -1);
-//		     $_SESSION["usertable"]["usernumber"], $_SESSION["usertable"]["usersitenumber"]);
 	ForceLoad("task.php");
 }
 
@@ -59,11 +41,7 @@ if (isset($_GET["done"]) && is_numeric($_GET["done"]) && isset($_GET["site"]) &&
 <br>
   <script language="javascript">
     function conf2(url) {
-//      if (confirm("Confirm?")) {
         document.location=url;
-//      } else {
-//        document.location='task.php';
-//      }
     }
   </script>
 <table width="100%" border=1>

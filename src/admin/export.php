@@ -1,23 +1,4 @@
 <?php
-////////////////////////////////////////////////////////////////////////////////
-//BOCA Online Contest Administrator
-//    Copyright (C) 2003-2012 by BOCA Development Team (bocasystem@gmail.com)
-//
-//    This program is free software: you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation, either version 3 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//    You should have received a copy of the GNU General Public License
-//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-////////////////////////////////////////////////////////////////////////////////
-// Last modified 05/aug/2012 by cassio@ime.usp.br
-//Change list 
-// 15/June/2011 by cassio@ime.usp.br: created based on import.php
 require('header.php');
 
 if(isset($_POST["Submit"]) || isset($_POST['Submit1'])) {
@@ -27,10 +8,6 @@ if(isset($_POST["Submit"]) || isset($_POST['Submit1'])) {
 		
 		header ("Content-transfer-encoding: binary\n");
 		header ("Content-type: application/force-download");
-//header ("Content-type: application/octet-stream");
-//if (strstr($_SERVER["HTTP_USER_AGENT"], "MSIE"))
-//	header("Content-Disposition: filename=" .$_GET["filename"]); // For IE
-//else
 		header ("Content-Disposition: attachment; filename=export.dat");
 		ob_end_flush();
 		$reduced = false;

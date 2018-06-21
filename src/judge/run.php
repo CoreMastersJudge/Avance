@@ -1,21 +1,4 @@
 <?php
-////////////////////////////////////////////////////////////////////////////////
-//BOCA Online Contest Administrator
-//    Copyright (C) 2003-2012 by BOCA Development Team (bocasystem@gmail.com)
-//
-//    This program is free software: you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation, either version 3 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//    You should have received a copy of the GNU General Public License
-//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-////////////////////////////////////////////////////////////////////////////////
-// Last modified 21/jul/2012 by cassio@ime.usp.br
 require('header.php');
 ?>
 
@@ -40,16 +23,12 @@ $run = DBOpenRunsInSites($_SESSION["usertable"]["contestnumber"], $s["sitejudgin
 
 for ($i=0; $i<count($run); $i++) {
   echo " <tr>\n";
-//  if (strpos($run[$i]["status"], "judged") === false || $run[$i]["judge"]=="" || $run[$i]["judge"]==$_SESSION["usertable"]["usernumber"])
   echo "  <td nowrap><a href=\"runedit.php?runnumber=".$run[$i]["number"]."&runsitenumber=".$run[$i]["site"] .
          "\">" . $run[$i]["number"] . "</td>\n";
-//  else
-//    echo "  <td nowrap>" . $run[$i]["number"] . "</td>\n";
   echo "  <td nowrap>" . $run[$i]["site"] . "</td>\n";
   echo "  <td nowrap>" . dateconvminutes($run[$i]["timestamp"]) . "</td>\n";
   echo "  <td nowrap>" . $run[$i]["problem"] . "</td>\n";
   echo "  <td nowrap>" . $run[$i]["language"] . "</td>\n";
-//  echo "  <td nowrap>" . $run[$i]["filename"] . "</td>\n";
   if ($run[$i]["judge1"] == $_SESSION["usertable"]["usernumber"] && 
       $run[$i]["judgesite1"] == $_SESSION["usertable"]["usersitenumber"])
     $color="ff7777";

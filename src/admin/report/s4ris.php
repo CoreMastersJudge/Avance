@@ -1,21 +1,4 @@
 <?php
-////////////////////////////////////////////////////////////////////////////////
-//BOCA Online Contest Administrator
-//    Copyright (C) 2003-2012 by BOCA System (bocasystem@gmail.com)
-//
-//    This program is free software: you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation, either version 3 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//    You should have received a copy of the GNU General Public License
-//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-////////////////////////////////////////////////////////////////////////////////
-//Last updated 18/oct/2017
 
 require('header.php');
 
@@ -26,10 +9,7 @@ $ct = DBContestInfo($contest);
 if(($st =  DBSiteInfo($contest, $site)) == null)
    ForceLoad("../index.php");
 
-//if(isset($_GET['full']) && $_GET['full'] > 0)
    $freezeTime = $st['siteduration'];
-//else
-// $freezeTime = $st['sitelastmilescore'];
 
 
 $obj = array(
@@ -64,7 +44,6 @@ $contestans = array();
 $numTeams = DBnlines($r);
 for ($i = 0; $i < $numTeams; $i++) {
    $a = cleanuserdesc(DBRow($r, $i));
-   //$teamID = $a['username'];
 
    if (isset($a['usershortname']))
       $teamName = $a['usershortname'];

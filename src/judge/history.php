@@ -1,23 +1,4 @@
 <?php
-////////////////////////////////////////////////////////////////////////////////
-//BOCA Online Contest Administrator
-//    Copyright (C) 2003-2012 by BOCA Development Team (bocasystem@gmail.com)
-//
-//    This program is free software: you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation, either version 3 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//    You should have received a copy of the GNU General Public License
-//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-////////////////////////////////////////////////////////////////////////////////
-// Last modified 05/aug/2012 by cassio@ime.usp.br
-// updated 20/oct/08 by cassio@ime.usp.br
-//  -  bugfix of Marcelo Cezar Pinto (mcpinto@unipampa.edu.br) - div by zero at counts
 require('header.php');
 ?>
 <br>
@@ -32,9 +13,6 @@ require('header.php');
  </tr>
 <?php
 $clar = DBAllClarsInSites($_SESSION["usertable"]["contestnumber"],  $s["sitejudging"], "clar");
-//$clar = DBJudgedClars($_SESSION["usertable"]["contestnumber"],
-//		      $_SESSION["usertable"]["usersitenumber"],
-//		      $_SESSION["usertable"]["usernumber"]);
 $myclars = 0;
 for ($i=0; $i<count($clar); $i++) {
   echo " <tr>\n";
@@ -52,14 +30,10 @@ for ($i=0; $i<count($clar); $i++) {
   if ($clar[$i]["answer"] == "") $clar[$i]["answer"] = "&nbsp;";
 
   echo "  <td>";
-//  echo "<pre>" . $clar[$i]["question"] . "</pre>";
-//  echo $clar[$i]["question"];
   echo "  <textarea name=\"m$i\" cols=\"60\" rows=\"8\" readonly>".$clar[$i]["question"]."</textarea>\n";
   echo "</td>\n";
   if (trim($clar[$i]["answer"]) == "") $clar[$i]["answer"] = "Not answered yet";
   echo "  <td>";
-//  echo "  <pre>" . $clar[$i]["answer"] . "</pre>";
-//  echo $clar[$i]["answer"];
   echo "  <textarea name=\"a$i\" cols=\"60\" rows=\"8\" readonly>".$clar[$i]["answer"]."</textarea>\n";
   echo "</td>\n";
 
@@ -84,9 +58,6 @@ else echo "<br><b><font color=\"#b0b0a0\">* Shadowed clars and runs were judged 
 $run = DBAllRunsInSites($_SESSION["usertable"]["contestnumber"],
   	  	     $s["sitejudging"],
 		    "run");
-//$run = DBJudgedRuns($_SESSION["usertable"]["contestnumber"],
-//  	  	    $_SESSION["usertable"]["usersitenumber"],
-//		    $_SESSION["usertable"]["usernumber"]);
 $yes = 0;
 $myyes = 0;
 $myruns = 0;

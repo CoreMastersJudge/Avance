@@ -1,21 +1,4 @@
 <?php
-////////////////////////////////////////////////////////////////////////////////
-//BOCA Online Contest Administrator
-//    Copyright (C) 2003-2012 by BOCA Development Team (bocasystem@gmail.com)
-//
-//    This program is free software: you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation, either version 3 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//    You should have received a copy of the GNU General Public License
-//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-////////////////////////////////////////////////////////////////////////////////
-// Last modified 21/jul/2012 by cassio@ime.usp.br
 require('header.php');
 
 if (isset($_POST["answer"]) && isset($_POST["giveup"]) && $_POST["giveup"]=="Cancel editing" &&
@@ -36,19 +19,17 @@ if (isset($_POST["answer"]) && isset($_POST["giveup"]) && $_POST["giveup"]=="Can
 
 if (isset($_POST["answer"]) && isset($_POST["Submit"]) && $_POST["Submit"]=="Judge" && is_numeric($_POST["answer"]) &&
     isset($_POST["sitenumber"]) && isset($_POST["number"]) && is_numeric($_POST["sitenumber"]) &&
-    is_numeric($_POST["number"])) { // && isset($_POST["notifyuser"]) && isset($_POST["updatescore"])) {
+    is_numeric($_POST["number"])) { 
 
 	if ($_POST["confirmation"] == "confirm") {
 	        $answer = myhtmlspecialchars($_POST["answer"]);
 	        $sitenumber = myhtmlspecialchars($_POST["sitenumber"]);
 	        $number = myhtmlspecialchars($_POST["number"]);
-//      	  $notuser = myhtmlspecialchars($_POST["notifyuser"]);
-//	        $updscore = myhtmlspecialchars($_POST["updatescore"]);
 
 	        DBUpdateRun($_SESSION["usertable"]["contestnumber"],
 	                     $_SESSION["usertable"]["usersitenumber"],
 	                     $_SESSION["usertable"]["usernumber"],
-	                     $sitenumber, $number, $answer); //, $notuser, $updscore);
+	                     $sitenumber, $number, $answer); 
 	}
         ForceLoad("run.php");
 }
@@ -167,9 +148,7 @@ if ($a["timestamp"] < $s["sitelastmileanswer"]) echo "checked"; ?>>
   <br>
   <script language="javascript">
     function conf() {
-//      if (confirm("Confirm?")) {
         document.form1.confirmation.value='confirm';
-//      }
     }
   </script>
   <center>
